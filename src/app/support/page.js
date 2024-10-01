@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import { useState, useEffect } from 'react';
-import AppBar from "@/components/common/AppBar";
-import Sidebar from "@/components/common/SideBar";
+import AppBar from '@/components/common/AppBar';
+import Sidebar from '@/components/common/SideBar';
 import { Menu } from 'lucide-react';
-import Form from '@/components/Dashboard/ProjectSection';
+import Supportt from '@/components/AppbarItems/Support';
 
-export default function Dashboard() {
+export default function Preismodell() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -25,8 +25,24 @@ export default function Dashboard() {
   const closeSidebar = () => {
     if (isMobile) {
       setSidebarOpen(false);
-    }
-  };
+    }}
+  
+  
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Clean up
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div className="flex h-screen">
@@ -47,8 +63,8 @@ export default function Dashboard() {
         onClick={closeSidebar}
       >
         <AppBar />
-        <Form />
+        <Supportt isMobile={isMobile} />
       </div>
     </div>
   );
-}
+  }
