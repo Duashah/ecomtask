@@ -3,18 +3,18 @@ import { useState, useEffect } from 'react';
 import AppBar from '@/components/common/AppBar';
 import Sidebar from '@/components/common/SideBar';
 import { Menu } from 'lucide-react';
-import Supportt from '@/components/AppbarItems/Support';
+import UserProfile from '@/components/Profile/Myprofile';
 
-export default function Preismodell() {
+export default function Privacy() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false); 
+  const [isLoaded, setIsLoaded] = useState(false); // New state to track when the screen size is checked
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
-      setSidebarOpen(window.innerWidth >= 768);
-      setIsLoaded(true); 
+      setIsMobile(window.innerWidth < 768);
+      setSidebarOpen(window.innerWidth >= 768); // Sidebar should only open by default on desktop
+      setIsLoaded(true); // Mark as loaded once screen size is checked
     };
 
     checkScreenSize();
@@ -27,26 +27,13 @@ export default function Preismodell() {
   const closeSidebar = () => {
     if (isMobile) {
       setSidebarOpen(false);
-    }}
-    if (!isLoaded) {
-        return <div className="flex justify-center items-center h-screen">Loading...</div>;
-      }
-  
+    }
+  };
 
-//   useEffect(() => {
-//     const handleResize = () => {
-//       setIsMobile(window.innerWidth < 768);
-//     };
-
-//     // Set initial value
-//     handleResize();
-
-//     // Add event listener
-//     window.addEventListener('resize', handleResize);
-
-//     // Clean up
-//     return () => window.removeEventListener('resize', handleResize);
-//   }, []);
+  // Show loading until we determine the screen size
+  if (!isLoaded) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  }
 
   return (
     <div className="flex h-screen">
@@ -67,8 +54,8 @@ export default function Preismodell() {
         onClick={closeSidebar}
       >
         <AppBar />
-        <Supportt isMobile={isMobile} />
+        <UserProfile isMobile={isMobile} />
       </div>
     </div>
   );
-  }
+}

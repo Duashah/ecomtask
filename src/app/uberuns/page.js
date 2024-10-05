@@ -8,11 +8,13 @@ import { Menu } from 'lucide-react';
 export default function Uberuns() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false); 
 
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768); // Adjust breakpoint as needed
       setSidebarOpen(window.innerWidth >= 768);
+      setIsLoaded(true); 
     };
 
     checkScreenSize();
@@ -26,23 +28,26 @@ export default function Uberuns() {
     if (isMobile) {
       setSidebarOpen(false);
     }}
+    if (!isLoaded) {
+      return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    }
   
   
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setIsMobile(window.innerWidth < 768);
+  //   };
 
-    // Set initial value
-    handleResize();
+  //   // Set initial value
+  //   handleResize();
 
-    // Add event listener
-    window.addEventListener('resize', handleResize);
+  //   // Add event listener
+  //   window.addEventListener('resize', handleResize);
 
-    // Clean up
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  //   // Clean up
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
 
   return (
     <div className="flex h-screen">

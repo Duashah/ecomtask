@@ -1,14 +1,13 @@
-"use client";
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Bell, User, ChevronDown, Home, Info, DollarSign, BookOpen, HelpCircle } from 'lucide-react';
+import { Menu, X, Bell, User, ChevronDown, Info, DollarSign, BookOpen, HelpCircle, Settings as SettingsIcon } from 'lucide-react';
 import logo from "@/assests/images/logo.svg"
 
 const AppBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const [showSettingsMenu, setShowSettingsMenu] = useState(false); // State for settings dropdown
 
-  // Mock user data (replace with actual user data in a real application)
   const userData = {
     name: "John Doe",
     email: "john.doe@example.com"
@@ -22,11 +21,12 @@ const AppBar = () => {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const toggleUserMenu = () => setShowUserMenu(!showUserMenu);
+  const toggleSettingsMenu = () => setShowSettingsMenu(!showSettingsMenu); // Toggle settings dropdown
 
   const menuItems = [
     { title: 'Über uns', href: '/uberuns', icon: Info },
     { title: 'Preismodell', href: '/preismodell', icon: DollarSign },
-    { title: 'Hilfe', href: '/hlife', icon: BookOpen },
+    { title: 'Hilfe', href: '/hilfe', icon: BookOpen },
     { title: 'Support', href: '/support', icon: HelpCircle },
   ];
 
@@ -54,6 +54,20 @@ const AppBar = () => {
               <button className="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200">
                 <Bell className="h-6 w-6" />
               </button>
+
+              {/* Settings Button with Dropdown */}
+              <div className="relative">
+                <button onClick={toggleSettingsMenu} className="p-1 rounded-full focus:outline-none text-gray-400 ">
+                  <SettingsIcon className="h-6 w-6" />
+                </button>
+                {showSettingsMenu && (
+                  <div className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                    <a href="/accounts" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account Settings</a>
+                    <a href="/privacy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy Settings</a>
+                  </div>
+                )}
+              </div>
+
               <div className="relative">
                 <button 
                   onClick={toggleUserMenu}
@@ -86,6 +100,7 @@ const AppBar = () => {
         </div>
         <div className="h-px bg-black"></div>
       </nav>
+
       {isMenuOpen && (
         <div className="fixed inset-0 z-40 bg-white md:hidden" style={{top: '65px'}}>
           <div className="pt-2 pb-3 space-y-1">
@@ -120,6 +135,21 @@ const AppBar = () => {
                 <a href="#profile" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Profile</a>
                 <a href="#settings" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Settings</a>
                 <a href="/" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Logout</a>
+              </div>
+            )}
+            {/* Add this code after the existing profile menu items */}
+            <button 
+              onClick={toggleSettingsMenu}
+              className="flex items-center w-full px-4 py-2 mt-2 text-left"
+            >
+              <SettingsIcon className="h-5 w-5 mr-3" />
+              <span className="text-base font-medium text-gray-500">Settings</span>
+              <ChevronDown className="ml-auto h-5 w-5 text-gray-400" />
+            </button>
+            {showSettingsMenu && (
+              <div className="mt-2 space-y-1 pl-9">
+                <a href="/accounts" className="block py-2 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-100">Account Settings</a>
+                <a href="/privacy" className="block py-2 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-100">Privacy Settings</a>
               </div>
             )}
           </div>

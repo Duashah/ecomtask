@@ -2,6 +2,7 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Head from 'next/head';
+import Sidebar from '../common/SideBar';
 
 const UberUns = () => {
   const router = useRouter();
