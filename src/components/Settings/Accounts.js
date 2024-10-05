@@ -8,7 +8,7 @@ const AccountSettings = () => {
     const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
   return (
 
-    <div className="max-w-8xl mx-auto p-6 bg-white rounded-lg shadow-md">
+    <div className="max-w-3xl p-9 mx-9 bg-white rounded-lg shadow-md">
       <h1 className="text-2xl font-bold mb-6 text-black">Kontoeinstellungen</h1>
       
       <div className="md:flex md:space-x-8">

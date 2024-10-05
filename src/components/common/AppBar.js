@@ -73,7 +73,7 @@ const notifications = [
 
               {/* Notification Dropdown */}
               {isOpen && (
-                <div className="absolute right-0 w-64 mt-10 py-2 bg-white border border-gray-700 rounded-md shadow-lg">
+                <div className="absolute right-0 w-64 mt-10 py-2 bg-white border border-gray-200 rounded-md shadow-lg">
                   <div className="px-4 py-2 border-b border-gray-100 font-semibold text-gray-700">
                     Notifications
                   </div>
@@ -109,23 +109,23 @@ const notifications = [
                   <User className="h-8 w-8 rounded-full bg-gray-400 p- border border-gray-300" />
                 </button>
                 {showUserMenu && (
-                  <div className="absolute right-0 w-64 mt-2 py-2 bg-white border border-gray-700 rounded-md shadow-lg">
+                  <div className="absolute right-0 w-64 mt-2 py-2 bg-white border border-gray-200 rounded-md shadow-lg">
                     <div className="px-4 py-2 border-b border-gray-200">
                       <p className="text-sm font-medium text-gray-900">{userData.name}</p>
                       <p className="text-sm text-gray-500">{userData.email}</p>
                     </div>
                     <a href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
-                      
-                  <button onClick={toggleSettingsMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">
+                  <div classname="relative" > 
+                  <button onClick={toggleSettingsMenu} className="w-full text-left block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 transition-colors duration-200">
                   Einstellungen
                   </button>
                   {showSettingsMenu && (
-                    <div className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                    <div className="absolute right-0 mt-2 py-2  bg-white border border-gray-200 rounded-md shadow-lg z-50">
                       <a href="/accounts" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Kontoeinstellungen</a>
                       <a href="/privacy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Datenschutzeinstellungen</a>
                     </div>
                   )}
-                
+                  </div>
                     <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Abmelden</a>
                   </div>
                 )}
