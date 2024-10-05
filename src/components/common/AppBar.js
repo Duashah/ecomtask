@@ -13,6 +13,19 @@ const AppBar = () => {
     email: "john.doe@example.com"
   };
 
+const [isOpen, setIsOpen] = useState(false);
+
+// Mock notification data
+const notifications = [
+  { id: 1, message: 'New message from John', time: '2 mins ago' },
+  { id: 2, message: 'Your order is ready for pickup', time: '1 hour ago' },
+  { id: 3, message: 'New comment on your post', time: '3 hours ago' },
+];
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', handleScroll);
@@ -50,10 +63,42 @@ const AppBar = () => {
                 </a>
               ))}
             </div>
-            <div className="hidden md:flex md:items-center md:space-x-4">
-              <button className="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200">
+            <div className="relative flex space-x-4">
+              <button
+                className="p-1 rounded-full text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 transition-colors duration-200"
+                onClick={toggleDropdown}
+              >
                 <Bell className="h-6 w-6" />
               </button>
+
+              {/* Notification Dropdown */}
+              {isOpen && (
+                <div className="absolute right-0 w-64 mt-10 py-2 bg-white border border-gray-700 rounded-md shadow-lg">
+                  <div className="px-4 py-2 border-b border-gray-100 font-semibold text-gray-700">
+                    Notifications
+                  </div>
+
+                  {/* Notifications List */}
+                  <ul className="max-h-64 overflow-y-auto">
+                    {notifications.length > 0 ? (
+                      notifications.map((notification) => (
+                        <li key={notification.id} className="px-4 py-2 hover:bg-gray-50 cursor-pointer">
+                          <p className="text-gray-800">{notification.message}</p>
+                          <p className="text-xs text-gray-500">{notification.time}</p>
+                        </li>
+                      ))
+                    ) : (
+                      <li className="px-4 py-2 text-gray-500">No new notifications</li>
+                    )}
+                  </ul>
+
+                  {/* View All Link */}
+                  <div className="px-4 py-2 border-t border-gray-100 text-sm text-gray-500 hover:bg-gray-50 cursor-pointer">
+                    View all notifications
+                  </div>
+                </div>
+              )}
+            
 
               
               <div className="relative">
@@ -61,10 +106,10 @@ const AppBar = () => {
                   onClick={toggleUserMenu}
                   className="flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                 >
-                  <User className="h-8 w-8 rounded-full bg-gray-400 p-1 border border-gray-300" />
+                  <User className="h-8 w-8 rounded-full bg-gray-400 p- border border-gray-300" />
                 </button>
                 {showUserMenu && (
-                  <div className="absolute right-0 w-64 mt-2 py-2 bg-white border border-gray-200 rounded-md shadow-lg">
+                  <div className="absolute right-0 w-64 mt-2 py-2 bg-white border border-gray-700 rounded-md shadow-lg">
                     <div className="px-4 py-2 border-b border-gray-200">
                       <p className="text-sm font-medium text-gray-900">{userData.name}</p>
                       <p className="text-sm text-gray-500">{userData.email}</p>
