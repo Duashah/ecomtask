@@ -55,19 +55,7 @@ const AppBar = () => {
                 <Bell className="h-6 w-6" />
               </button>
 
-              {/* Settings Button with Dropdown */}
-              <div className="relative">
-                <button onClick={toggleSettingsMenu} className="p-1 rounded-full focus:outline-none text-gray-400 ">
-                  <SettingsIcon className="h-6 w-6" />
-                </button>
-                {showSettingsMenu && (
-                  <div className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
-                    <a href="/accounts" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Account Settings</a>
-                    <a href="/privacy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Privacy Settings</a>
-                  </div>
-                )}
-              </div>
-
+              
               <div className="relative">
                 <button 
                   onClick={toggleUserMenu}
@@ -81,9 +69,19 @@ const AppBar = () => {
                       <p className="text-sm font-medium text-gray-900">{userData.name}</p>
                       <p className="text-sm text-gray-500">{userData.email}</p>
                     </div>
-                    <a href="#profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                    <a href="#settings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                    <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                    <a href="/profile" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profil</a>
+                      
+                  <button onClick={toggleSettingsMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">
+                  Einstellungen
+                  </button>
+                  {showSettingsMenu && (
+                    <div className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                      <a href="/accounts" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Kontoeinstellungen</a>
+                      <a href="/privacy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Datenschutzeinstellungen</a>
+                    </div>
+                  )}
+                
+                    <a href="/" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Abmelden</a>
                   </div>
                 )}
               </div>
@@ -132,26 +130,20 @@ const AppBar = () => {
             </button>
             {showUserMenu && (
               <div className="mt-3 space-y-1">
-                <a href="#profile" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Profile</a>
-                <a href="#settings" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Settings</a>
-                <a href="/" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Logout</a>
+                <a href="/profile" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Profil</a>
+                <button onClick={toggleSettingsMenu} className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 ">
+                  Einstellungen
+                  </button>
+                  {showSettingsMenu && (
+                    <div className="absolute right-0 mt-2 py-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                      <a href="/accounts" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Kontoeinstellungen</a>
+                      <a href="/privacy" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Datenschutzeinstellungen</a>
+                    </div>
+                  )}
+                <a href="/" className="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">Abmelden</a>
               </div>
             )}
-            {/* Add this code after the existing profile menu items */}
-            <button 
-              onClick={toggleSettingsMenu}
-              className="flex items-center w-full px-4 py-2 mt-2 text-left"
-            >
-              <SettingsIcon className="h-5 w-5 mr-3" />
-              <span className="text-base font-medium text-gray-500">Settings</span>
-              <ChevronDown className="ml-auto h-5 w-5 text-gray-400" />
-            </button>
-            {showSettingsMenu && (
-              <div className="mt-2 space-y-1 pl-9">
-                <a href="/accounts" className="block py-2 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-100">Account Settings</a>
-                <a href="/privacy" className="block py-2 text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-100">Privacy Settings</a>
-              </div>
-            )}
+            
           </div>
         </div>
       )}

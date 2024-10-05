@@ -6,7 +6,6 @@ const Sidebar = ({ isOpen, onClose, isMobile }) => {
   const menuItems = [
     { icon: Home, text: 'Home' , href: '/dashboard'},
     { icon: Folder, text: 'Ordner' },
-    { icon: User, text: 'Profile', href: '/profile'},
     {
       icon: FileText,
       text: 'Meine Projekte',

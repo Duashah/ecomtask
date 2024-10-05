@@ -30,13 +30,13 @@ const PrivacyOptions = () => {
 
   return (
     <div className="max-w-2xl mx-auto py-7 px-4 bg-white shadow-sm rounded-lg">
-      <h1 className="text-2xl font-semibold mb-6 text-black">Change privacy options</h1>
+      <h1 className="text-2xl font-semibold mb-6 text-black">Datenschutzoptionen ändern</h1>
 
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <div className="pr-4">
-            <p className="font-medium text-black">Let apps use my advertising ID for experiences across apps</p>
-            <p className="text-sm text-gray-500">(Turning this off will reset your ID)</p>
+            <p className="font-medium text-black">Lassen Sie Apps meine Werbe-ID für App-übergreifende Erlebnisse verwenden</p>
+            <p className="text-sm text-gray-500">(Wenn Sie dies deaktivieren, wird Ihre ID zurückgesetzt)</p>
           </div>
           <CustomSwitch
             checked={options.advertising}
@@ -45,7 +45,7 @@ const PrivacyOptions = () => {
         </div>
 
         <div className="flex items-center justify-between">
-          <p className="font-medium pr-4 text-black">Turn on SmartScreen Filter to check web content (URLs) that Windows Store apps use</p>
+          <p className="font-medium pr-4 text-black">Aktivieren Sie den SmartScreen-Filter, um Webinhalte zu überprüfen (URLs) die Windows Store-Apps verwenden</p>
           <CustomSwitch
             checked={options.smartScreen}
             onChange={() => handleToggle('smartScreen')}
@@ -53,7 +53,7 @@ const PrivacyOptions = () => {
         </div>
 
         <div className="flex items-center justify-between">
-          <p className="font-medium pr-4 text-black">Send Microsoft info about how I write to help us improve typing and writing in the future</p>
+          <p className="font-medium pr-4 text-black">Senden Sie Microsoft-Informationen darüber, wie ich schreibe, damit wir das Tippen und Schreiben in Zukunft verbessern können</p>
           <CustomSwitch
             checked={options.improveTyping}
             onChange={() => handleToggle('improveTyping')}
@@ -61,7 +61,7 @@ const PrivacyOptions = () => {
         </div>
 
         <div className="flex items-center justify-between">
-          <p className="font-medium pr-4 text-black">Let websites provide locally relevant content by accessing my language list</p>
+          <p className="font-medium pr-4 text-black">Lassen Sie Websites lokal relevante Inhalte bereitstellen, indem Sie auf meine Sprachliste zugreifen</p>
           <CustomSwitch
             checked={options.localContent}
             onChange={() => handleToggle('localContent')}
@@ -69,11 +69,11 @@ const PrivacyOptions = () => {
         </div>
 
         <CustomButton onClick={() => console.log('Manage advertising clicked')}>
-          Manage my Microsoft advertising and other personalization info
+        Verwalten Sie meine Microsoft-Werbung und andere Personalisierungsinformationen
         </CustomButton>
 
         <CustomButton onClick={() => console.log('Privacy Statement clicked')}>
-          Privacy Statement
+        Datenschutzerklärung
         </CustomButton>
       </div>
 
